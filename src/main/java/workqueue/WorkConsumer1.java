@@ -35,6 +35,8 @@ public class WorkConsumer1 {
             System.out.println(consumerTag+"C1消费者取消消费接口回调逻辑");};
 
         System.out.println("C1 等待接收消息处理时间较短");
+
+
         channel.basicConsume(QUEUE_NAME,autoAck,deliverCallback,cancelCallback);
     }
 }
