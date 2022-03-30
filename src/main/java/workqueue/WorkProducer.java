@@ -16,9 +16,14 @@ public class WorkProducer {
         boolean durable = true;
         channel.queueDeclare(QUEUE_NAME, durable, false, false, null);
 //从控制台当中接受信息
-        Scanner scanner = new Scanner(System.in);
-        while (scanner.hasNext()) {
-            String message = scanner.next();
+//        Scanner scanner = new Scanner(System.in);
+//        while (scanner.hasNext()) {
+//            String message = scanner.next();
+//            channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
+//            System.out.println("发送消息完成:" + message);
+//        }
+        for(int i=0;i<100;i++){
+            String message = "message"+i;
             channel.basicPublish("", QUEUE_NAME, MessageProperties.PERSISTENT_TEXT_PLAIN, message.getBytes());
             System.out.println("发送消息完成:" + message);
         }

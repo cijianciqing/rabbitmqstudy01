@@ -13,6 +13,8 @@ public class WorkConsumer1 {
     private static final String QUEUE_NAME="hello";
     public static void main(String[] args) throws Exception {
         Channel channel = RabbitMqUtils.getChannel();
+        //设置不公平分发
+        channel.basicQos(1);
 
 //        DeliverCallback deliverCallback=(consumerTag, delivery)->{
 //            String receivedMessage = new String(delivery.getBody());
