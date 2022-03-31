@@ -18,9 +18,13 @@ public class DirectConsumer2 {
         /*
         * 随机生成临时队列
         * */
-        String queue = channel.queueDeclare().getQueue();
+        String queue1 = channel.queueDeclare().getQueue();
         //在exchange上绑定一个queue
-        channel.queueBind(queue,EXCHANGE_NAME,"rk1");
+        channel.queueBind(queue1,EXCHANGE_NAME,"rk1");
+
+        String queue2 = channel.queueDeclare().getQueue();
+        //在exchange上绑定一个queue
+        channel.queueBind(queue2,EXCHANGE_NAME,"rk2");
 
         //消息消费的时候如何处理消息
         DeliverCallback deliverCallback=(consumerTag,delivery)->{
@@ -33,6 +37,7 @@ public class DirectConsumer2 {
 
         //采用手动应答
         boolean autoAck=false;
-        channel.basicConsume(queue,autoAck,deliverCallback,cancelCallback);
+        channel.basicConsume(queue1,autoAck,deliverCallback,cancelCallback);
+        channel.basicConsume(queue2,autoAck,deliverCallback,cancelCallback);
     }
 }

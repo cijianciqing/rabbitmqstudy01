@@ -1,9 +1,6 @@
 package exchanges.direct;
 
-import com.rabbitmq.client.BuiltinExchangeType;
-import com.rabbitmq.client.CancelCallback;
-import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.DeliverCallback;
+import com.rabbitmq.client.*;
 import util.RabbitMqUtils;
 
 
@@ -18,7 +15,9 @@ public class DirectConsumer1 {
         /*
         * 随机生成临时队列
         * */
-        String queue = channel.queueDeclare().getQueue();
+//        String queue = channel.queueDeclare().getQueue();
+        String queue = "TemQueue";
+        channel.queueDeclare(queue, false, false, false, null);
         //在exchange上绑定一个queue
         channel.queueBind(queue,EXCHANGE_NAME,"rk2");
 
