@@ -4,6 +4,7 @@ import com.rabbitmq.client.*;
 
 public class Consumer {
     private final static String QUEUE_NAME = "hello";
+    private static int ccNo = 0;
     public static void main(String[] args) throws Exception {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("172.16.207.221");
@@ -17,6 +18,8 @@ public class Consumer {
         DeliverCallback deliverCallback=(consumerTag, delivery)->{
             String message= new String(delivery.getBody());
             System.out.println(message);
+            System.out.println(ccNo++);
+
         };
 //取消消费的一个回调接口 如在消费的时候队列被删除掉了
         CancelCallback cancelCallback=(consumerTag)->{
