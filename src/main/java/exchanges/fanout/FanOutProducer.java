@@ -15,7 +15,7 @@ public class FanOutProducer {
         channel.exchangeDeclare(EXCHANGE_NAME, BuiltinExchangeType.FANOUT);
         for(int i=0;i<5;i++){
             String message = "message"+i;
-            channel.basicPublish(EXCHANGE_NAME,"",null, message.getBytes("UTF-8"));
+            channel.basicPublish(EXCHANGE_NAME,"rk1",null, message.getBytes("UTF-8"));
             System.out.println("发送消息完成:" + message);
         }
     }
