@@ -13,11 +13,13 @@ import java.util.Map;
 * Consumer只绑定了 死信channel
 * */
 public class DeathMessageConsumer2 {
+    //普通交换机名称
+    private static final String NORMAL_EXCHANGE = "deathmessage_normal_exchange";
     //死信交换机名称
     private static final String DEAD_EXCHANGE = "deathmessage_dead_exchange";
     public static void main(String[] argv) throws Exception {
         Channel channel = RabbitMqUtils.getChannel();
-        channel.exchangeDeclare(DEAD_EXCHANGE, BuiltinExchangeType.DIRECT);
+        channel.exchangeDeclare(NORMAL_EXCHANGE, BuiltinExchangeType.DIRECT);
         String deadQueue = "dead-queue";
         channel.queueDeclare(deadQueue, false, false, false, null);
         channel.queueBind(deadQueue, DEAD_EXCHANGE, "lisi");
