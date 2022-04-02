@@ -20,7 +20,7 @@ public class FanOutConsumer2 {
         * */
         String queue = channel.queueDeclare().getQueue();
         //在exchange上绑定一个queue
-        channel.queueBind(queue,EXCHANGE_NAME,"rk1");
+        channel.queueBind(queue,EXCHANGE_NAME,"rk2");
 
         //消息消费的时候如何处理消息
         DeliverCallback deliverCallback=(consumerTag,delivery)->{
